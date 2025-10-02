@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Airline Chile - Buscador de Vuelos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-plane-departure"></i>
+                <h1>Sky Airline Chile</h1>
+            </div>
+            <p class="subtitle">Buscador oficial de información de vuelos</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="flightNumber" 
+                        placeholder="Ingresa número de vuelo (ej: SKY123)" 
+                        maxlength="10"
+                    >
+                    <button id="searchBtn">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+                <div class="instructions">
+                    <p><i class="fas fa-info-circle"></i> Solo vuelos de Sky Airline Chile (SKY)</p>
+                </div>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Buscando información del vuelo...</p>
+            </div>
+
+            <div id="results" class="results hidden">
+                <h2><i class="fas fa-plane"></i> Información del Vuelo</h2>
+                <div class="flight-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Número de Vuelo</label>
+                            <span id="flightNum">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Matrícula</label>
+                            <span id="registration">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>STA (Hora Programada)</label>
+                            <span id="sta">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>ETA (Hora Estimada)</label>
+                            <span id="eta">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Origen</label>
+                            <span id="origin">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Destino</label>
+                            <span id="destination">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Estado</label>
+                            <span id="status">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Aerolínea</label>
+                            <span id="airline">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nextFlights" class="next-flights hidden">
+                    <h3><i class="fas fa-list-alt"></i> Próximos vuelos de esta aeronave</h3>
+                    <div id="nextFlightsList" class="next-flights-list"></div>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p id="errorMessage"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Datos proporcionados por AeroDataBox API</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
