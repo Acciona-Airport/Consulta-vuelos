@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Vuelos - FlightRadar24 Directo</title>
+    <title>Sky Airline Chile - Buscador de Vuelos</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -11,10 +11,10 @@
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-radar"></i>
-                <h1>FlightRadar24 Directo</h1>
+                <i class="fas fa-plane-departure"></i>
+                <h1>Sky Airline Chile</h1>
             </div>
-            <p class="subtitle">Datos en tiempo real sin salir de la página</p>
+            <p class="subtitle">Buscador de vuelos - Datos en tiempo real</p>
         </header>
 
         <main>
@@ -23,142 +23,100 @@
                     <input 
                         type="text" 
                         id="flightNumber" 
-                        placeholder="Ingresa número de vuelo (ej: LA330, H2100)" 
+                        placeholder="Ingresa número de vuelo (ej: H2100, H2201)" 
                         maxlength="10"
                     >
                     <button id="searchBtn">
-                        <i class="fas fa-search"></i> Buscar Vuelo
+                        <i class="fas fa-search"></i> Buscar en Google Flights
                     </button>
                 </div>
                 <div class="instructions">
-                    <p><i class="fas fa-info-circle"></i> Busca cualquier vuelo comercial mundial</p>
+                    <p><i class="fas fa-info-circle"></i> Busca cualquier vuelo Sky Airline (H2) o otras aerolíneas</p>
+                    <p><small>Ejemplos: H2100, LA330, JA234, AM450</small></p>
                 </div>
             </div>
 
             <div id="loading" class="loading hidden">
                 <div class="spinner"></div>
-                <p>Consultando FlightRadar24...</p>
+                <p>Consultando Google Flights...</p>
             </div>
 
             <div id="results" class="results hidden">
-                <div class="flight-header">
-                    <div class="flight-main">
-                        <span class="flight-number-main" id="flightMainNumber">-</span>
-                        <span class="airline-main" id="flightMainAirline">-</span>
-                        <span class="status-badge" id="statusBadge">-</span>
-                    </div>
-                    <div class="flight-route">
-                        <span id="routeMain">-</span>
-                    </div>
-                </div>
-
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3><i class="fas fa-plane"></i> Información de la Aeronave</h3>
-                        <div class="card-content">
-                            <div class="info-row">
-                                <span class="label">Matrícula:</span>
-                                <span class="value" id="registration">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Modelo:</span>
-                                <span class="value" id="aircraftModel">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Aerolínea:</span>
-                                <span class="value" id="airline">-</span>
-                            </div>
+                <h2><i class="fas fa-plane"></i> Información del Vuelo</h2>
+                <div class="flight-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Número de Vuelo</label>
+                            <span id="flightNum">-</span>
                         </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h3><i class="fas fa-map-marker-alt"></i> Ruta</h3>
-                        <div class="card-content">
-                            <div class="info-row">
-                                <span class="label">Origen:</span>
-                                <span class="value" id="origin">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Destino:</span>
-                                <span class="value" id="destination">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Ruta:</span>
-                                <span class="value" id="route">-</span>
-                            </div>
+                        <div class="info-item">
+                            <label>Aerolínea</label>
+                            <span id="airline">-</span>
                         </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h3><i class="fas fa-clock"></i> Tiempos</h3>
-                        <div class="card-content">
-                            <div class="info-row">
-                                <span class="label">STD (Programado):</span>
-                                <span class="value" id="std">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">ETD (Estimado):</span>
-                                <span class="value" id="etd">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">STA (Programado):</span>
-                                <span class="value" id="sta">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">ETA (Estimado):</span>
-                                <span class="value" id="eta">-</span>
-                            </div>
+                        <div class="info-item">
+                            <label>Estado</label>
+                            <span id="status">-</span>
                         </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h3><i class="fas fa-chart-line"></i> Estado del Vuelo</h3>
-                        <div class="card-content">
-                            <div class="info-row">
-                                <span class="label">Estado:</span>
-                                <span class="value" id="status">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Velocidad:</span>
-                                <span class="value" id="speed">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Altitud:</span>
-                                <span class="value" id="altitude">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">Actualizado:</span>
-                                <span class="value" id="lastUpdate">-</span>
-                            </div>
+                        <div class="info-item">
+                            <label>Fecha</label>
+                            <span id="date">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Hora Programada</label>
+                            <span id="scheduledTime">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Hora Estimada</label>
+                            <span id="estimatedTime">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Origen</label>
+                            <span id="origin">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Destino</label>
+                            <span id="destination">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Duración</label>
+                            <span id="duration">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Aeronave</label>
+                            <span id="aircraft">-</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="data-source">
-                    <p><i class="fas fa-database"></i> <strong>Fuente:</strong> FlightRadar24 - Datos en tiempo real</p>
+                <div class="source-info">
+                    <p><i class="fas fa-database"></i> <strong>Fuente:</strong> Google Flights - Datos en tiempo real</p>
                 </div>
             </div>
 
             <div id="error" class="error hidden">
                 <i class="fas fa-exclamation-triangle"></i>
                 <p id="errorMessage"></p>
-                <button id="retryBtn" class="retry-btn">Reintentar</button>
             </div>
 
-            <div class="quick-search">
-                <h3><i class="fas fa-bolt"></i> Búsquedas Rápidas</h3>
-                <div class="quick-buttons">
-                    <button class="quick-btn" data-flight="LA330">LA330</button>
-                    <button class="quick-btn" data-flight="H2100">H2100</button>
-                    <button class="quick-btn" data-flight="AA904">AA904</button>
-                    <button class="quick-btn" data-flight="JA300">JA300</button>
-                    <button class="quick-btn" data-flight="DL601">DL601</button>
+            <div class="alternative-section">
+                <h3><i class="fas fa-external-link-alt"></i> Alternativa Directa</h3>
+                <p>También puedes buscar directamente en:</p>
+                <div class="external-links">
+                    <a href="https://www.google.com/travel/flights" target="_blank" class="external-link">
+                        <i class="fas fa-plane"></i> Google Flights
+                    </a>
+                    <a href="https://www.flightstats.com/v2" target="_blank" class="external-link">
+                        <i class="fas fa-chart-line"></i> FlightStats
+                    </a>
+                    <a href="https://www.skyairline.com/" target="_blank" class="external-link">
+                        <i class="fas fa-home"></i> Sky Airline Oficial
+                    </a>
                 </div>
             </div>
         </main>
 
         <footer>
-            <p><i class="fas fa-code"></i> Desarrollado con FlightRadar24 API</p>
+            <p>Buscador no oficial - Datos obtenidos de fuentes públicas</p>
         </footer>
     </div>
 
