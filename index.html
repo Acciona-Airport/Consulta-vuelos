@@ -14,7 +14,7 @@
                 <i class="fas fa-plane-departure"></i>
                 <h1>Sky Airline Chile</h1>
             </div>
-            <p class="subtitle">Buscador oficial de información de vuelos H2</p>
+            <p class="subtitle">Buscador de vuelos - Datos en tiempo real</p>
         </header>
 
         <main>
@@ -23,22 +23,22 @@
                     <input 
                         type="text" 
                         id="flightNumber" 
-                        placeholder="Ingresa número de vuelo (ej: H2123)" 
-                        maxlength="6"
+                        placeholder="Ingresa número de vuelo (ej: H2100, H2201)" 
+                        maxlength="10"
                     >
                     <button id="searchBtn">
-                        <i class="fas fa-search"></i> Buscar
+                        <i class="fas fa-search"></i> Buscar en Google Flights
                     </button>
                 </div>
                 <div class="instructions">
-                    <p><i class="fas fa-info-circle"></i> Solo vuelos de Sky Airline Chile (código H2)</p>
-                    <p><small>Ejemplos: H2100, H2345, H2150</small></p>
+                    <p><i class="fas fa-info-circle"></i> Busca cualquier vuelo Sky Airline (H2) o otras aerolíneas</p>
+                    <p><small>Ejemplos: H2100, LA330, JA234, AM450</small></p>
                 </div>
             </div>
 
             <div id="loading" class="loading hidden">
                 <div class="spinner"></div>
-                <p>Buscando información del vuelo...</p>
+                <p>Consultando Google Flights...</p>
             </div>
 
             <div id="results" class="results hidden">
@@ -50,16 +50,24 @@
                             <span id="flightNum">-</span>
                         </div>
                         <div class="info-item">
-                            <label>Matrícula</label>
-                            <span id="registration">-</span>
+                            <label>Aerolínea</label>
+                            <span id="airline">-</span>
                         </div>
                         <div class="info-item">
-                            <label>STA (Hora Programada)</label>
-                            <span id="sta">-</span>
+                            <label>Estado</label>
+                            <span id="status">-</span>
                         </div>
                         <div class="info-item">
-                            <label>ETA (Hora Estimada)</label>
-                            <span id="eta">-</span>
+                            <label>Fecha</label>
+                            <span id="date">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Hora Programada</label>
+                            <span id="scheduledTime">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Hora Estimada</label>
+                            <span id="estimatedTime">-</span>
                         </div>
                         <div class="info-item">
                             <label>Origen</label>
@@ -70,19 +78,18 @@
                             <span id="destination">-</span>
                         </div>
                         <div class="info-item">
-                            <label>Estado</label>
-                            <span id="status">-</span>
+                            <label>Duración</label>
+                            <span id="duration">-</span>
                         </div>
                         <div class="info-item">
-                            <label>Aerolínea</label>
-                            <span id="airline">-</span>
+                            <label>Aeronave</label>
+                            <span id="aircraft">-</span>
                         </div>
                     </div>
                 </div>
 
-                <div id="nextFlights" class="next-flights hidden">
-                    <h3><i class="fas fa-list-alt"></i> Próximos vuelos de esta aeronave</h3>
-                    <div id="nextFlightsList" class="next-flights-list"></div>
+                <div class="source-info">
+                    <p><i class="fas fa-database"></i> <strong>Fuente:</strong> Google Flights - Datos en tiempo real</p>
                 </div>
             </div>
 
@@ -90,11 +97,26 @@
                 <i class="fas fa-exclamation-triangle"></i>
                 <p id="errorMessage"></p>
             </div>
+
+            <div class="alternative-section">
+                <h3><i class="fas fa-external-link-alt"></i> Alternativa Directa</h3>
+                <p>También puedes buscar directamente en:</p>
+                <div class="external-links">
+                    <a href="https://www.google.com/travel/flights" target="_blank" class="external-link">
+                        <i class="fas fa-plane"></i> Google Flights
+                    </a>
+                    <a href="https://www.flightstats.com/v2" target="_blank" class="external-link">
+                        <i class="fas fa-chart-line"></i> FlightStats
+                    </a>
+                    <a href="https://www.skyairline.com/" target="_blank" class="external-link">
+                        <i class="fas fa-home"></i> Sky Airline Oficial
+                    </a>
+                </div>
+            </div>
         </main>
 
         <footer>
-            <p>Datos proporcionados por AeroDataBox API</p>
-            <p><small>API Key: default-application_11098946</small></p>
+            <p>Buscador no oficial - Datos obtenidos de fuentes públicas</p>
         </footer>
     </div>
 
